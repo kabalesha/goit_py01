@@ -1,4 +1,5 @@
 import random
+
 from datetime import datetime
 
 # Task 1
@@ -7,13 +8,16 @@ def get_days_from_today(user_input):
     try:
         user_date = datetime.strptime(user_input, '%Y-%m-%d')
     except ValueError:
-        return None
+        try:
+            user_date = datetime.strptime(user_input, '%Y')
+            user_date = datetime(user_date.year, 1, 1)
+        except ValueError:
+            return None
+
     current_date = datetime.now()
+
     delta_days = (user_date - current_date).days
-    if delta_days == 0:
-        return 0
     return delta_days
-days_left = get_days_from_today("2023-08-21")
 
 # Task 2
 
