@@ -1,18 +1,29 @@
+import random
 from datetime import datetime
+from enum import unique
+
 
 # Task 1
-def get_days():
-    user_input = input("Type your date (DD.MM): ")
-    current_year = datetime.now().year
-    user_date = datetime.strptime(user_input, '%d.%m')
+def get_days_from_today(user_input):
+    user_date = datetime.strptime(user_input, '%Y-%m-%d')
+    current_date = datetime.now()
+    delta_days = (user_date - current_date).days
+    if delta_days > 0:
+        print(f"{delta_days} days left")
+    else:
+        user_date = user_date.replace(year=user_date.year)
+        delta_days = (user_date - current_date).days
+        print(f"{delta_days} days left")
 
-    user_date = user_date.replace(year=current_year)
+get_days_from_today("2023-08-21")
 
-    if user_date < datetime.now():
-        user_date = user_date.replace(year=current_year + 1)
+# Task 2
 
-    days_difference = (user_date - datetime.now()).days
-    print(f"Days until your date: {days_difference}")
+def get_numbers_ticket(min, max, quantity):
+    if min < 1 or max > 100 or quantity < 1 or quantity > (max - min + 1):
+        return print("Write relevant numbers")
+    unique_nums = random.sample(range(min, max + 1), quantity)
+    return unique_nums
 
-
-get_days()
+lottery_numbers = get_numbers_ticket(1, 100, 10)
+print("Ваші лотерейні числа:", lottery_numbers)
