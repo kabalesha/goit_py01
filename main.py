@@ -17,9 +17,9 @@ days_left = get_days_from_today("2023-08-21")
 
 # Task 2
 
-def get_numbers_ticket(min_val, max_val, quantity):
-    if min_val < 1 or max_val > 100 or quantity < 1 or quantity > (max_val - min_val + 1):
+def get_numbers_ticket(min, max, quantity):
+    if min < 1 or max > 100 or quantity < 1 or quantity > (max - min + 1):
         return []
-    unique_nums = random.sample(range(min_val, max_val + 1), quantity)
+    unique_nums = random.sample(range(min, max + 1), quantity)
     return sorted(unique_nums)
 lottery_numbers = get_numbers_ticket(1, 100, 10)
