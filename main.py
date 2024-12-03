@@ -8,16 +8,13 @@ def get_days_from_today(user_input):
     try:
         user_date = datetime.strptime(user_input, '%Y-%m-%d')
     except ValueError:
-        try:
-            user_date = datetime.strptime(user_input, '%Y')
-            user_date = datetime(user_date.year, 1, 1)
-        except ValueError:
-            return None
+        return None
 
-    current_date = datetime.now()
+    current_date = datetime.now().date()
 
-    delta_days = (user_date - current_date).days
+    delta_days = (user_date.date() - current_date).days
     return delta_days
+# print(get_days_from_today('2024-12-03'))
 
 # Task 2
 
